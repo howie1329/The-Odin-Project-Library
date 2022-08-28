@@ -23,36 +23,40 @@ function addbooks(title,author,pages,readstatus) {
     return library.push(new Book(title,author,pages,readstatus))
 }
 
-addbooks('Song of fire','martin',250,'read')
+addbooks('Song of fire','martin','250','Read')
+addbooks('Song of Ice','martin','500','Not Read Yet')
 
-function addtable(book){
-    const row = document.createElement('tr')
-    const data = document.createElement('td')
-    data.textContent = book.title
-    return row.appendChild(data)
+function createbookcard(book) {
+    const bookcards = document.querySelector('.bookcards')
+    const bookcard = document.createElement('div')
+    bookcard.setAttribute('class', 'card')
+    bookcards.appendChild(bookcard)
+    const title = document.createElement('h2')
+    title.textContent = 'Title: ' + book.title
+    bookcard.appendChild(title)
+    const author = document.createElement('p')
+    author.textContent = 'Book Author: ' + book.author
+    bookcard.appendChild(author)
+    const pageNumber = document.createElement('p')
+    pageNumber.textContent = 'Number of Pages: ' + book.pages
+    bookcard.appendChild(pageNumber)
+    const status = document.createElement('p')
+    status.textContent = 'Read Status: ' + book.readstatus
+    bookcard.appendChild(status)
+
+}
+function resetdisplay(){
+    const test = document.querySelector('.bookcards')
+    test.innerHTML = '';
 }
 
-function updatetable() {
-	library.forEach(book => {
-	    const table = document.querySelector('.table')
-	    const row = document.createElement('tr')
-	    const t = document.createElement('td')
-	    t.textContent = book.title
-	    const a = document.createElement('td')
-	    a.textContent = book.author
-	    const p = document.createElement('td')
-	    p.textContent = book.pages
-	    row.appendChild(t)
-	    row.appendChild(a)
-	    row.appendChild(p)
-	    table.appendChild(row)
-	    console.log(book.info())
-	});
+function render(){
+    resetdisplay()
+    library.map(createbookcard)
 }
 
-const btn = document.querySelector('.newbookbtn');
-btn.addEventListener('click', () => {
-    updatetable()
-});
-
-
+const btn = document.querySelector('.newbookbtn')
+btn.addEventListener('click',() => {
+    addbooks('Song of Ice','martin','500','not read yet')
+    render()
+})
