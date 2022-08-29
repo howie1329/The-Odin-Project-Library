@@ -14,14 +14,27 @@ class Book{
     info(){
         return this.title + ' by ' + this.author + ', ' + this.pages + ' pages, ' + this.readstatus
     }
-
 }
 
 let library = []
 
 function addbooks(title,author,pages,readstatus) {
-    return library.push(new Book(title,author,pages,readstatus))
+    library.push(new Book(title,author,pages,readstatus))
 }
+
+function bookform(){
+    let titles = document.getElementById('formbooktitle').value
+    let authors = document.getElementById('formbookauthor').value
+    let pages = document.getElementById('formbookpages').value
+    console.log(titles + authors + pages)
+    addbooks(titles,authors,pages,'Read')
+}
+
+const subbtn = document.querySelector('.submitbtn')
+subbtn.addEventListener('click', () =>{
+    console.log(library)
+    bookform()
+})
 
 addbooks('Song of fire','martin','250','Read')
 addbooks('Song of Ice','martin','500','Not Read Yet')
@@ -57,6 +70,6 @@ function render(){
 
 const btn = document.querySelector('.newbookbtn')
 btn.addEventListener('click',() => {
-    addbooks('Song of Ice','martin','500','not read yet')
+    addbooks('Song of Ice','martin',200,'not read yet')
     render()
 })

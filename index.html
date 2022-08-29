@@ -12,6 +12,25 @@
     <div class = container>
         <h2 class = header>Library</h2>
         <div class="mainbody">
+            <div class = form-popup>
+                <form action="" name = 'bookform' method="post">
+                    <h2>New Book</h2>
+                    
+                    <label for="bookTitle">Book Title</label>
+                    <input type="text" placeholder="Book Title" name = 'formbooktitle' id="formbooktitle">
+
+                    <label for="bookAuthor">Author</label>
+                    <input type="text" placeholder="Author Name" name="formbookauthor" id="formbookauthor">
+
+                    <label for="bookPages">Total Pages</label>
+                    <input type='number' placeholder="Total Pages" name="formbookpages" id="formbookpages">
+
+                    <label for="bookReadStatus">Finished Reading?</label>
+                    <input type="checkbox" name="formbookstatus" id="formbookstatus">
+
+                    <button type="submit" class="submitbtn" value="submit">Submit</button>
+                </form>
+            </div>
             <div class = newbook>
                 <button class = newbookbtn>New Book</button>
             </div>
