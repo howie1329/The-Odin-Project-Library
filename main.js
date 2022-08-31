@@ -18,23 +18,25 @@ class Book{
 
 let library = []
 
+let title = '';
+let author = '';
+let pageNumber = 0;
+let readstatus = false
+
 function addbooks(title,author,pages,readstatus) {
-    library.push(new Book(title,author,pages,readstatus))
+    return library.push(new Book(title,author,pages,readstatus))
 }
 
-function bookform(){
-    let titles = document.getElementById('formbooktitle').value
-    let authors = document.getElementById('formbookauthor').value
-    let pages = document.getElementById('formbookpages').value
-    console.log(titles + authors + pages)
-    addbooks(titles,authors,pages,'Read')
+function bookform(form){
+    title = form.formbooktitle.value;
+    author = form.formbookauthor.value;
+    pageNumber = form.formbookpages.value;
+    addbooks(title,author,pageNumber)
+
+
 }
 
-const subbtn = document.querySelector('.submitbtn')
-subbtn.addEventListener('click', () =>{
-    console.log(library)
-    bookform()
-})
+
 
 addbooks('Song of fire','martin','250','Read')
 addbooks('Song of Ice','martin','500','Not Read Yet')
@@ -70,6 +72,15 @@ function render(){
 
 const btn = document.querySelector('.newbookbtn')
 btn.addEventListener('click',() => {
-    addbooks('Song of Ice','martin',200,'not read yet')
+    addbooks(title,author,pageNumber,readstatus)
+    console.log(title)
+    console.log(author)
+    console.log(pageNumber)
     render()
+})
+
+const subbtn = document.querySelector('.submitbtn')
+subbtn.addEventListener('click', () =>{
+    console.log(library)
+    bookform()
 })
