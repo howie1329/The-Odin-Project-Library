@@ -14,33 +14,40 @@ class Book{
     info(){
         return this.title + ' by ' + this.author + ', ' + this.pages + ' pages, ' + this.readstatus
     }
-}
 
+}//Library array to hold Book Class elements
 let library = []
 
-let title = '';
-let author = '';
-let pageNumber = 0;
-let readstatus = false
+//Create Global Variables
+let title;
+let author;
+let pageNumber;
+let readstatus;
 
-function addbooks(title,author,pages,readstatus) {
-    return library.push(new Book(title,author,pages,readstatus))
+//Add books to Library Array
+function addbooks(addtitle,addauthor,addpages,addreadstatus) {
+    return library.push(new Book(addtitle,addauthor,addpages,addreadstatus))
 }
 
-function bookform(form){
-    title = form.formbooktitle.value;
-    author = form.formbookauthor.value;
-    pageNumber = form.formbookpages.value;
-    addbooks(title,author,pageNumber)
-
-
+//Take information from form and store in array and variables
+function bookform(){
+    title = document.getElementById('formbooktitle').value;
+    author = document.getElementById('formbookauthor').value;
+    pageNumber = document.getElementById('formbookpages').value;
+    if (!title || !author || !pageNumber){
+        alert('Please Fill in blank field')
+    }
+    else{
+        addbooks(title,author,pageNumber)
+    }
 }
 
 
-
+//Example Data
 addbooks('Song of fire','martin','250','Read')
 addbooks('Song of Ice','martin','500','Not Read Yet')
 
+//Creates Book card on html page
 function createbookcard(book) {
     const bookcards = document.querySelector('.bookcards')
     const bookcard = document.createElement('div')
@@ -60,27 +67,38 @@ function createbookcard(book) {
     bookcard.appendChild(status)
 
 }
+
+//Resets display of book cards
 function resetdisplay(){
     const test = document.querySelector('.bookcards')
     test.innerHTML = '';
 }
 
+// Clears Form of information
+function clear(){
+    document.getElementById('formbooktitle').value = ''
+    document.getElementById('formbookauthor').value = ''
+    document.getElementById('formbookpages').value = ''
+}
+
+//Renders book cards
 function render(){
+    clear()
     resetdisplay()
     library.map(createbookcard)
 }
 
-const btn = document.querySelector('.newbookbtn')
-btn.addEventListener('click',() => {
-    addbooks(title,author,pageNumber,readstatus)
+
+//Submit button...
+const subbtn = document.querySelector('.submitbtn')
+subbtn.addEventListener('click', (event) =>{
+    event.preventDefault()
+
     console.log(title)
     console.log(author)
     console.log(pageNumber)
-    render()
-})
-
-const subbtn = document.querySelector('.submitbtn')
-subbtn.addEventListener('click', () =>{
     console.log(library)
+
     bookform()
+    render()
 })
