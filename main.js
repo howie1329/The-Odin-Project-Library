@@ -34,6 +34,8 @@ function bookform(){
     title = document.getElementById('formbooktitle').value;
     author = document.getElementById('formbookauthor').value;
     pageNumber = document.getElementById('formbookpages').value;
+    statuss = document.getElementById('formbookstatus').value;
+    console.log(statuss)
     if (!title || !author || !pageNumber){
         alert('Please Fill in blank field')
     }
@@ -79,6 +81,7 @@ function clear(){
     document.getElementById('formbooktitle').value = ''
     document.getElementById('formbookauthor').value = ''
     document.getElementById('formbookpages').value = ''
+    document.getElementById('formbookstatus').value = 'off'
 }
 
 //Renders book cards
